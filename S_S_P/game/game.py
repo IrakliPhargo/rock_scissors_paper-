@@ -12,7 +12,9 @@ class Game:
         self.enemy: Optional[Enemy] = None
         self.mode: str = mode
 
-    def create_enemy(self, enemy_level=1, enemy_difficulty=MODES) -> None:
+    def create_enemy(self, enemy_level=1, enemy_difficulty_key="1") -> None:
+        if enemy_difficulty is None:
+            enemy_difficulty = MODES
         self.enemy = Enemy(level=enemy_level, difficulty=enemy_difficulty)
 
     def play(self) -> None:
