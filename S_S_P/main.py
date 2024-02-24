@@ -1,9 +1,11 @@
-from game.exceptions import EnemyDown, GameOver
-from game.game import Game
-from game.models import Player
-from game.score import ScoreHandler, GameRecord
-from game.settings import MODES, SCORE_FILE
 from typing import Optional
+
+from S_S_P.game.exceptions import GameOver, EnemyDown
+from S_S_P.game.game import Game
+from S_S_P.game.models import Player
+from S_S_P.game.score import ScoreHandler, GameRecord
+from S_S_P.game.settings import MODES, SCORE_FILE
+
 
 def main() -> None:
     while True:
@@ -19,6 +21,7 @@ def main() -> None:
         else:
             print("Некорректный выбор. Пожалуйста, выберите 1, 2 или 3.")
 
+
 def play_game() -> None:
     player: Player = create_player()
     game: Game = Game(player=player, mode=player.mode)
@@ -32,6 +35,7 @@ def play_game() -> None:
     except EnemyDown as e:
         print(e)
         game.create_enemy()
+
 
 def create_player() -> Player:
     name: str = input("Введите ваше имя: ")
@@ -50,9 +54,11 @@ def create_player() -> Player:
 
     return Player(name=name, mode=mode)
 
+
 def show_scores() -> None:
     handler: ScoreHandler = ScoreHandler(game_record=GameRecord(), file_name=SCORE_FILE)
     handler.display()
+
 
 def exit_game() -> None:
     print("Выход из игры.")
